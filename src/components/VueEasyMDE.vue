@@ -7,18 +7,10 @@
 <script lang="ts" setup>
 import { onMounted, onUnmounted, ref, defineProps, defineEmits, defineExpose, watch } from 'vue'
 import EasyMDE, { Options } from 'easymde'
+import type { EditorProps, EditorEvents } from '../types'
 const textArea = ref<null | HTMLTextAreaElement>()
 let easyMDEInstance : EasyMDE | null = null
-interface EditorProps {
-  modelValue?: string;
-  value?: string;
-  options?: Options;
-}
-interface EditorEvents {
-  (type: 'update:modelValue', value: string): void;
-  (type: 'change', value: string): void;
-  (type: 'blur'): void;
-}
+
 const props = defineProps<EditorProps>()
 const emit = defineEmits<EditorEvents>()
 onMounted(() => {
@@ -59,12 +51,12 @@ const clear = () => {
     easyMDEInstance.value('')
   }
 }
-const getInstance = () => {
+const getMDEInstance = () => {
   return easyMDEInstance
 }
 defineExpose({
   clear,
-  getInstance
+  getMDEInstance
 })
 
 onUnmounted(() => {

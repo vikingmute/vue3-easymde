@@ -1,14 +1,17 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import Editor from './components/VueEasyMDE.vue'
+import type { EditorInstance } from './types'
 const test = ref('initial value')
-const editor = ref<any>('')
+const editor = ref<EditorInstance | null>(null)
 setTimeout(() => {
   test.value = '**updated**'
 }, 2000)
 const clear = () => {
-  console.log(editor.value.getInstance())
-  editor.value.clear()
+  if (editor.value) {
+    console.log(editor.value.getMDEInstance())
+    editor.value.clear()
+  }
 }
 const onBlur = () => {
   alert(1)
