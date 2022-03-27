@@ -1,10 +1,20 @@
 {
   "name": "vue3-easymde",
-  "private": true,
   "version": "0.1.0",
   "files": [
     "dist"
   ],
+  "keywords": [
+    "Vue3",
+    "EasyMDE",
+    "Markdown",
+    "editor"
+  ],
+  "author": {
+    "name": "Viking Zhang",
+    "email": "vikingmute@gmail.com"
+  },
+  "license": "GPL-3.0",
   "main": "./dist/vue-easymde.umd.js",
   "module": "./dist/vue-easymde.es.js",
   "types": "dist/index.d.ts",
@@ -18,7 +28,8 @@
     "dev": "vite",
     "build:site": "vite build",
     "preview": "vite preview",
-    "build:library": "vite build --config vite.config.build.ts"
+    "build:library": "vite build --config vite.config.build.ts",
+    "prepublishOnly": "npm run build:library"
   },
   "peerDependencies": {
     "vue": "^3.2.25",
