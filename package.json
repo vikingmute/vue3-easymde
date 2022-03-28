@@ -4,6 +4,9 @@
   "files": [
     "dist"
   ],
+  "engines": {
+    "node": ">=16"
+  },
   "keywords": [
     "Vue3",
     "EasyMDE",
@@ -29,11 +32,12 @@
     "build:site": "vite build",
     "preview": "vite preview",
     "build:library": "vite build --config vite.config.build.ts",
-    "prepublishOnly": "npm run build:library"
+    "prepublishOnly": "npm run build:library",
+    "publish:ghPages": "npm run build:site && node publishGHpages.js"
   },
   "peerDependencies": {
-    "vue": "^3.2.25",
-    "easymde": "^2.16.1"
+    "easymde": "^2.16.1",
+    "vue": "^3.2.25"
   },
   "devDependencies": {
     "@types/node": "^17.0.23",
@@ -43,6 +47,7 @@
     "easymde": "^2.16.1",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3",
+    "gh-pages": "^3.2.3",
     "typescript": "^4.5.4",
     "vite": "^2.8.0",
     "vite-plugin-dts": "^1.0.3",

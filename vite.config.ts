@@ -5,6 +5,7 @@ import VueTypeImports from 'vite-plugin-vue-type-imports'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/vue3-easymde/', 
   plugins: [vue(), eslintPlugin(), VueTypeImports()],
   build: {
     outDir: './static',

@@ -1,5 +1,5 @@
 # Vue3 EasyMDE Markdown Editor
-Vue3 component wrapper for [EasyMDE](https://github.com/Ionaru/easy-markdown-editor). Written in Typescript. Build by rollup. 
+Vue3 component wrapper for [EasyMDE](https://github.com/Ionaru/easy-markdown-editor). Written in Typescript. Build by Rollup. 
 
 ## Install
 ```bash
@@ -36,7 +36,7 @@ if (editorInstance.value) {
 
 ## Demo
 ### Online Demo
-**[Click for the Demo](http://www.baidu.com)**
+**[Click for the Demo](https://vikingmute.github.io/vue3-easymde/)**
 ### Run Demo locally
 ```bash
 git clone https://github.com/vikingmute/vue3-easymde.git
