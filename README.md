@@ -11,9 +11,10 @@ npm install vue3-easymde easymde --save
 
 ```typescript
 // main.ts
-import VueEasymde from 'vue-easymde'
+import VueEasymde from 'vue3-easymde'
 import "easymde/dist/easymde.min.css"
-Vue.component('vue-easymde', VueEasymde)
+
+app.use(VueEasymde)
 ```
 
 ```vue
