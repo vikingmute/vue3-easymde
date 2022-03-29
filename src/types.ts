@@ -1,7 +1,6 @@
 import { Options } from 'easymde'
-export type EditorProps = {
+export interface EditorProps {
   modelValue?: string;
-  value?: string;
   options?: Options;
 }
 export interface EditorEvents {

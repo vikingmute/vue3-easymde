@@ -9,10 +9,10 @@ import { onMounted, onUnmounted, ref, defineProps, defineEmits, defineExpose, wa
 import EasyMDE, { Options } from 'easymde'
 import type { EditorProps, EditorEvents } from '../types'
 const textArea = ref<null | HTMLTextAreaElement>()
-let easyMDEInstance : EasyMDE | null = null
-
+let easyMDEInstance : InstanceType<typeof EasyMDE> | null = null
 const props = defineProps<EditorProps>()
 const emit = defineEmits<EditorEvents>()
+const innerValue = ref(props.modelValue || '')
 onMounted(() => {
   if (textArea.value) {
     const config: Options = { 
@@ -24,6 +24,7 @@ onMounted(() => {
     easyMDEInstance.codemirror.on('change', () => {
       if (easyMDEInstance) {
         const updatedValue = easyMDEInstance.value()
+        innerValue.value = updatedValue
         emit('update:modelValue', updatedValue)
         emit('change', updatedValue)
       }
@@ -35,14 +36,11 @@ onMounted(() => {
     })
   }
 })
-watch([() => props.modelValue, () => props.value], (newValues) => {
-  const [ newModelValue, newValue ] = newValues
+// watch for async change to modelValue
+watch(() => props.modelValue, (newValue) => {
   if (easyMDEInstance) {
-    if (newModelValue) {
-      easyMDEInstance.value(newModelValue)
-    }
-    if (newValue) {
-      easyMDEInstance.value(newValue)
+    if (newValue !== innerValue.value) {
+      easyMDEInstance.value(newValue || '')
     }
   }
 })

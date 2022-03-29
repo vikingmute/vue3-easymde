@@ -52,7 +52,6 @@ npm run dev
 import { Options } from 'easymde'
 interface EditorProps {
   modelValue?: string;
-  value?: string;
   // check all the [config](https://github.com/Ionaru/easy-markdown-editor) here
   options?: Options;
 }

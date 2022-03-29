@@ -14,7 +14,7 @@ const clear = () => {
   }
 }
 const onBlur = () => {
-  alert(1)
+  console.log('editor blur event triggered')
 }
 </script>
 
@@ -23,6 +23,7 @@ const onBlur = () => {
   <button @click="clear">Clear Value</button>
   <button @click="test = '## new value'">Set Value</button>
   <Editor v-model="test" ref="editor" @blur="onBlur"/>
+  <p>current value: {{test}}</p>
 </template>
 
 <style>
