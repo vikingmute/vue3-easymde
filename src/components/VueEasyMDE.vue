@@ -5,22 +5,26 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { onMounted, onUnmounted, ref, defineProps, defineEmits, defineExpose, watch } from 'vue'
+import { onMounted, onUnmounted, ref, watch, defineProps, defineEmits, defineExpose, withDefaults } from 'vue'
 import EasyMDE, { Options } from 'easymde'
 import type { EditorProps, EditorEvents } from '../types'
 const textArea = ref<null | HTMLTextAreaElement>()
 let easyMDEInstance : InstanceType<typeof EasyMDE> | null = null
-const props = defineProps<EditorProps>()
+const props = withDefaults(defineProps<EditorProps>(), {
+  modelValue: ''
+})
 const emit = defineEmits<EditorEvents>()
-const innerValue = ref(props.modelValue || '')
+const innerValue = ref(props.modelValue)
 onMounted(() => {
   if (textArea.value) {
     const config: Options = { 
       ...(props.options || {}), 
-      element: textArea.value, 
-      initialValue: props.modelValue || ''  
+      element: textArea.value
     }
     easyMDEInstance = new EasyMDE(config)
+    // call value method instead of initialValue prop
+    // https://github.com/vikingmute/vue3-easymde/issues/1
+    easyMDEInstance.value(props.modelValue)
     easyMDEInstance.codemirror.on('change', () => {
       if (easyMDEInstance) {
         const updatedValue = easyMDEInstance.value()
